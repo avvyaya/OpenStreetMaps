@@ -1,20 +1,20 @@
 /*
 
-  Brief Explaination on to work with OpenLayers3
+  Brief Explaination on how to work with OpenLayers3
 
   Anything displayed using OpenLayers3(ol3) will be mostly likely be either a feature or control.
 
-  We cannot display feature as it is . Every Feature is displayed on layer .
+  We cannot display feature as it is . Every Feature is displayed on a layer .
   A layer can have one or any number of features associated with it. A Layer has to be pointed to appropriate 
   source to get these features.
   There are multiple types of features and layers . Feature examples are point , polygon etc. 
   Layer example are Vector , rastor etc
 
   So summarizing 
-  Feature ( Marker here having geometry as a point) -> vector source -> vector layer --> Map 
+  Feature ( Marker here, having geometry as a point) -> vector source -> vector layer --> Map 
       
 
-  //There are tons of feature missing , like anchoring image position etc.
+  There are tons of feature missing , like anchoring image position etc.
 
 */
 CreateMarker=function(long,lat,icon_image){
@@ -44,9 +44,12 @@ CreateMarker=function(long,lat,icon_image){
 }
 
 var alternatesource=new ol.source.OSM();
-//Carefull it is longitude first and then latitude parameters . Also note both are floating values not strings
-//Over parameters are the div tag element name , source to be used and the center of the map coordinates
-//Openlayers can render a number of sources to provide a custom source please 
+
+/*
+  Carefull it is longitude first and then latitude parameters . Also note both are floating values not strings
+  Over parameters are the div tag element name , source to be used and the center of the map coordinates
+  Openlayers can render a number of sources to provide a custom source please 
+*/
 
 Initialize=function(elementid,center_long,center_lat,zoom,source,minZoom,maxZoom)
 { 
