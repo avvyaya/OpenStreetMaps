@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Marker features example</title>   
+    
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.5.0/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.6.0/ol.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+
+  </head>
+  <body>
+    	<div id="map"></div>      
+      
+      <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+      <script src="http://openlayers.org/en/v3.5.0/build/ol.js" type="text/javascript"></script>
+      
+      <script src="OSMHelper.js" type="text/javascript"></script>
+      <script>
+        
+      var container = document.getElementById('popup');
+
+
+var rasterLayer = new ol.layer.Tile({
+  source: new ol.source.TileJSON({
+    url: 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.jsonp',
+    crossOrigin: ''
+  })
+});
+
+var map = new ol.Map({
+  layers: [rasterLayer],
+  target: document.getElementById('map'),
+  view: new ol.View({
+    center: [0, 0],
+    zoom: 3
+  })
+});
+
+//Provide a longitude and lattitude and the image
+map.addLayer(CreateMarker(73.66,12.33,'device.png'));
+map.addLayer(CreateMarker(72.16,12.33,'device.png'));
+
+
+     </script>
+  </body>
+</html>
