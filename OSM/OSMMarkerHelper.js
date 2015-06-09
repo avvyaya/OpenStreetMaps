@@ -14,7 +14,7 @@
   Feature ( Marker here having geometry as a point) -> vector source -> vector layer --> Map 
       
 
-
+  //There are tons of feature missing , like anchoring image position etc.
 
 */
 CreateMarker=function(long,lat,icon_image){
@@ -41,4 +41,38 @@ CreateMarker=function(long,lat,icon_image){
   });
 
 	return vectorLayer
+}
+
+var alternatesource=new ol.source.OSM();
+//Carefull it is longitude first and then latitude parameters . Also note both are floating values not strings
+//Over parameters are the div tag element name , source to be used and the center of the map coordinates
+//Openlayers can render a number of sources to provide a custom source please 
+
+Initialize=function(elementid,center_long,center_lat,zoom,source,minZoom,maxZoom)
+{ 
+  source = typeof source !== 'undefined' ? source : alternatesource;
+  center_long = typeof center_long !== 'undefined' ? center_long : 0;
+  center_lat = typeof center_latong !== 'undefined' ? center_lat : 0;
+  minZoom = typeof minZoom !== 'undefined' ? minZoom : 2;
+  maxZoom = typeof maxZoom !== 'undefined' ? maxZoom : 15;
+  zoom = typeof zoom !== 'undefined' ? zoom : 5;
+
+    var map = new ol.Map({
+    layers: [
+        new ol.layer.Tile({
+        source: source
+        })
+    ],
+    target: elementid,
+
+    view: new ol.View({
+            center: ol.proj.transform([center_long, center_lat], 'EPSG:4326', 'EPSG:3857'),
+            zoom: zoom,
+            minZoom: minZoom,
+            maxZoom: maxZoom
+        })
+    });
+
+    return map;
+
 }
